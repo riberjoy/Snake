@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-column: 100fr;
+    grid-template-rows: 20vh 65vh 15vh;
+    font-family: 'Indie Flower', cursive;
+}
+
+header{
+    text-align: center;
+}
+
+.flexAlinhado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#corpo{
+    display: grid;
+    grid-template-columns: 25fr 50fr 25fr;
+    grid-template-rows: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game{
+    width: 800px;
+    height: 600px;
+    border: 5px solid rgb(112, 4, 112);
+    padding: 0;
+}
+
+footer{
+    display: grid;
+    align-items: end;
+    text-align: center;
+}
+
+#play, #restart{
+    font-family: 'Indie Flower', cursive;
+    padding: 10px 20px 10px 20px;
+    font-size: 15pt;
+    color:white;
+    background-color: rgb(112, 4, 112);
+    border:none;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#play:hover, #restart:hover{
+    background-color: rgb(168, 0, 168);
+}
+
+#restart{
+    display:none;
+}
+
+h1, h4{
+    margin: 0;
+}
+
+#titulo{
+    font-size: 60pt;
+    text-shadow: 1px 3px 2px rgb(160, 1, 160);
+}
+
+#pontos{
+    font-size: 30pt;
+    display: none;
+}
+
+img{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
