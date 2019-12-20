@@ -4,7 +4,7 @@ body{
     margin: 0;
     padding: 0;
     display: grid;
-    grid-column: 100fr;
+    grid-template-columns: 100fr;
     grid-template-rows: 20vh 65vh 15vh;
     font-family: 'Indie Flower', cursive;
 }
@@ -30,6 +30,7 @@ header{
 }
 
 #game{
+    position: absolute;
     width: 800px;
     height: 600px;
     border: 5px solid rgb(112, 4, 112);
@@ -71,13 +72,22 @@ h1, h4{
 }
 
 #pontos{
+
     font-size: 30pt;
     display: none;
+    text-align: center;
 }
 
 img{
+    position: absolute;
     width: 20px;
     height: 20px;
     margin: 0;
     padding: 0;
+
+}
+
+.posicao{
+  top: 290px;
+  left: 390px
 }
