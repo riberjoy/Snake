@@ -1,38 +1,67 @@
-var vivo = true;
+var xLimite = 400;
+var yLimite = 300;
 
-var posicaoAtual = parseInt($("#cobra").offset().left);
+var velocidade = 10;
 
-var xLimite = 800;
-var xLimite = 600;
+var direcao;
 
-
-
-var velocidade = 1000;
+$(document).keydown(function (e) {
+    direcao = e.keyCode;
+    ("#pontos").html("asdawedas");
+})
 
 $(document).ready(function () {
-    $("#play").click(function () {
+    $("#restart").click(function () {
+        $("#restart").css("display", "none");
         $("#pontos").css("display", "flex");
-        $("#play").css("display", "none");
-        move();
+        $(".posicao").css("top", "290px");
+        $(".posicao").css("left", "390px");
+        xLimite = 400;
+        yLimite = 300;
     })
+    move();
 })
+
 
 function move() {
     var dimensao = setInterval(movimento, velocidade);
     function movimento() {
-        if (xLimite == 0) {
-            //   direita = 0;
-            //   $("#cobra").css("margin-left", direita+"px");
-            $("#cobra").css("display", "none");
+        if ((xLimite == 0 || yLimite == 0) || (xLimite == 801 || yLimite == 601)) {
             dimensao = clearInterval();
+            $("#restart").css("display", "flex");
+            $("#pontos").css("display", "none");
+            $("#pontos").html("0");
         } else {
-            xLimite = xLimite -1;
-            $(".posicao").css("left",(posicaoAtual+1)+"px");
-            $("#pontos").html($("#cobra").offset().left);
-            // document.getElementById("#pontos").innerHTML = esquerda ;
+            if (direcao == 37 || (direcao!=39 && direcao!=38 && direcao!=40)) {//pra esquerda
+                xLimite = xLimite - 1;
+                $(".posicao").css("left", (parseInt($("#cobra").position().left) - 1) + "px");
+                $(".posicao").css("top", $("#cobra").position().top + "px");
+            }
+            if (direcao == 38 || (direcao!=39 && direcao!=40 && direcao!=37)) {//pra cima
+                yLimite = yLimite - 1;
+                $(".posicao").css("top", (parseInt($("#cobra").position().top) - 1) + "px");
+                $(".posicao").css("left", parseInt($("#cobra").position().left) + "px");
+            }
+            if (direcao == 39 || (direcao!=40 && direcao!=38 && direcao!=37)) {//pra direita
+                xLimite = xLimite + 1;
+                $(".posicao").css("left", (parseInt($("#cobra").position().left) + 1) + "px");
+                $(".posicao").css("top", $("#cobra").position().top + "px");
+            }
+            if (direcao == 40 || (direcao!=39 && direcao!=38 && direcao!=37)) {//pra baixo
+                yLimite = yLimite + 1;
+                $(".posicao").css("top", (parseInt($("#cobra").position().top) + 1) + "px");
+                $(".posicao").css("left", $("#cobra").position().left + "px");
+            }
         }
     }
 }
+
+
+
+
+
+
+
 
 // Para adicionar uma nova imaem (mais uma parte da cobrinha)
 // usar a seguinte estrutura: 

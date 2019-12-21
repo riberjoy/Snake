@@ -52,15 +52,16 @@ footer{
     border:none;
     border-radius: 10px;
     margin-top: 15px;
+    display: none;
 }
 
 #play:hover, #restart:hover{
     background-color: rgb(168, 0, 168);
 }
 
-#restart{
+/* #restart{
     display:none;
-}
+} */
 
 h1, h4{
     margin: 0;
@@ -74,7 +75,7 @@ h1, h4{
 #pontos{
 
     font-size: 30pt;
-    display: none;
+
     text-align: center;
 }
 
