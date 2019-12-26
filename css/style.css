@@ -37,12 +37,6 @@ header{
     padding: 0;
 }
 
-footer{
-    display: grid;
-    align-items: end;
-    text-align: center;
-}
-
 #play, #restart{
     font-family: 'Indie Flower', cursive;
     padding: 10px 20px 10px 20px;
@@ -59,10 +53,6 @@ footer{
     background-color: rgb(168, 0, 168);
 }
 
-/* #restart{
-    display:none;
-} */
-
 h1, h4{
     margin: 0;
 }
@@ -73,9 +63,7 @@ h1, h4{
 }
 
 #pontos{
-
     font-size: 30pt;
-
     text-align: center;
 }
 
@@ -91,4 +79,11 @@ img{
 .posicao{
   top: 290px;
   left: 390px
+}
+
+.maca{
+    top: 290px;
+    left: 390px;
+    display: none;
+    border: 1px solid red;
 }
