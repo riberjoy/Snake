@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"> 
-        <link  rel="stylesheet" href="css/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="http://momentjs.com/downloads/moment.js" type="application/javascript"></script>
-<script src="http://momentjs.com/downloads/moment-timezone-with-data.js" type="application/javascript"></script>
-        <script  type="text/javascript" src="js/script.js"></script>
-        <title>SNAKE</title>
-    </head>
-    <body>
-        <header class="flexAlinhado">
-            <h1 id="titulo">Snake</h1>
-            <button id="play"> Clique aqui ou aperte uma ceta para iniciar</button>
-            <button id="restart">Reiniciar</button>
-            <h4 id="pontos">0</h4>
-        </header>
-        <section id="corpo">
-            <aside>
-            </aside>
-            <section class="flexAlinhado">
-                <div id='game' >
-                    <img id="cobra" class="posicao" src="imagens/corpo_Cobrinha.png">
-                    <img id="maca" class="maca" src="imagens/maca.png">   
-                </div>
-            </section>
-            <aside >
-            </aside>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.js" type="application/javascript"></script>
+    <script src="http://momentjs.com/downloads/moment-timezone-with-data.js" type="application/javascript"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <title>SNAKE</title>
+</head>
+
+<body>
+    <header class="flexAlinhado">
+        <h1 id="titulo">Snake</h1>
+        <button id="restart">Reiniciar</button>
+        <h4 id="pontos">0</h4>
+    </header>
+    <section id="corpo">
+        <aside>
+        </aside>
+        <section class="flexAlinhado">
+            <div id='game'>
+                <img id="cobra-cabeca" class="cobra posicao " src="imagens/corpo_Cobrinha.png">
+                <img id="cobra-rabo" class="cobra posicao" src="imagens/rabo_cobrinha.png">
+                <img id="maca" class="maca" src="imagens/maca.png">
+            </div>
         </section>
-        <footer>
-        </footer>
+        <aside>
+        </aside>
+    </section>
+    <footer>
+    </footer>
+
     <body>
+
 </html>
