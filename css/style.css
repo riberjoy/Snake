@@ -4,14 +4,16 @@ body{
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 100fr;
-    grid-template-rows: 20vh 65vh 15vh;
+    grid-template-rows: 15vh 85vh;
     font-family: 'Indie Flower', cursive;
+    background: url("../imagens/galaxia.jpg");
 }
 
 header{
+    padding-top: 3%;
     text-align: center;
 }
+
 
 .flexAlinhado{
     display: flex;
@@ -23,7 +25,7 @@ header{
 #corpo{
     display: grid;
     grid-template-columns: 25fr 50fr 25fr;
-    grid-template-rows: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,33 +35,35 @@ header{
     position: absolute;
     width: 900px;
     height: 600px;
-    border: 5px solid rgb(112, 4, 112);
+    border: 5px solid white;
     padding: 0;
 }
 
-#play, #restart{
+#restart{
     font-family: 'Indie Flower', cursive;
     padding: 10px 20px 10px 20px;
     font-size: 15pt;
-    color:white;
-    background-color: rgb(112, 4, 112);
+    font-weight: bold;
+    color:rgb(112, 4, 112);
+    background-color: white;
     border:none;
     border-radius: 10px;
-    margin-top: 15px;
+    margin-top: 6px;
     display: none;
 }
 
 #play:hover, #restart:hover{
-    background-color: rgb(168, 0, 168);
+    background-color: rgb(192, 192, 192);
 }
 
 h1, h4{
     margin: 0;
+    color:white;
 }
 
 #titulo{
     font-size: 60pt;
-    text-shadow: 1px 3px 2px rgb(160, 1, 160);
+    text-shadow: 1px 5px 2px rgb(34, 130, 217);
 }
 
 #pontos{
@@ -77,8 +81,8 @@ h1, h4{
 
 #maca{
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     margin: 0;
     padding: 0;
 }

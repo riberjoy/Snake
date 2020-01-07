@@ -8,12 +8,15 @@ var topMaca = 0;
 var pontos = 0;
 var nome = "cobra-corpo";
 // var apareceMaca;
-var direcao = null;
+var direcao = 0;
 var firstClick = true;
 var cont = 0;
 var controleTop = [];
 var controleLeft = [];
 var direcaoRabo = [];
+var rota = 0;
+var deadS = 1;
+var dimensao;
 
 $(document).ready(function () {
     $("#restart").click(function () {
@@ -23,21 +26,23 @@ $(document).ready(function () {
         $(".posicao").css("left", "450px");
         xLimite = 450;
         yLimite = 300;
-        direcao = null;
+        direcao = 0;
+        cont = 0;
         firstClick = true;
         pontos = 0;
         controleTop = [];
         controleLeft = [];
         direcaoRabo = [];
+        deadS = 1;
         $("img").remove();
-        $("<img/>", { id: "cobra-cabeca",  class: 'cobra posicao', src: "imagens/corpo_Cobrinha.png" }).appendTo("section section div");
-        $("<img/>", { id: "cobra-rabo",  class: 'cobra posicao', src: "imagens/rabo_Cobrinha.png" }).appendTo("section section div");
-        $("<img/>", { id: "maca",  class: 'maca', src: "imagens/maca.png" }).appendTo("section section div");
+        $("<img/>", { id: "cobra-cabeca", class: 'cobra posicao', src: "imagens/corpo_Cobrinha.png" }).appendTo("section section div");
+        $("<img/>", { id: "cobra-rabo", class: 'cobra posicao', src: "imagens/rabo_Cobrinha.png" }).appendTo("section section div");
+        $("<img/>", { id: "maca", class: 'maca', src: "imagens/maca.png" }).appendTo("section section div");
         $("#cobra-cabeca").attr("src", "imagens/corpo_Cobrinha.png");
         $("#cobra-rabo").css("display", "none");
-        // apareceMaca = clearInterval();
     })
-    move();
+    var velocidade = 100;
+    move(velocidade);
 })
 
 function maca() {
@@ -68,17 +73,17 @@ function buscaMaca() {
         controleTop.push(yLimite);
         direcaoRabo.push(direcao);
         pontos++;
-        $("#pontos").html("<p>" + pontos + "</p>");
+        $("#pontos").html(pontos+"");
         nome = "cobra-corpo" + pontos;
-        $("<img/>", { id: nome,  class: 'cobra', src: "imagens/corpo_Cobrinha.png" }).appendTo("section section div");    
+        $("<img/>", { id: nome, class: 'cobra', src: "imagens/corpo_Cobrinha.png" }).appendTo("section section div");
         maca();
     }
 }
 
 function contolaMovimento() {
     if (controleLeft != null || controleTop != null) {
-        for(var i = 1; i<= pontos; i++){
-            nome = "#cobra-corpo"+i;
+        for (var i = 1; i <= pontos; i++) {
+            nome = "#cobra-corpo" + i;
             $(nome).css("left", (controleLeft[i]) + "px");
             $(nome).css("top", (controleTop[i]) + "px");
         }
@@ -105,42 +110,74 @@ function contolaMovimento() {
     cont--;
 }
 
+
+function dead() {
+    if (pontos > 3) {
+        switch (rota) {
+            case 37:
+                if (direcao == 39) {
+                    return 0;
+                }
+                break;
+            case 38:
+                if (direcao == 40) {
+                    return 0;
+                }
+                break;
+            case 39:
+                if (direcao == 37) {
+                    return 0;
+                }
+                break;
+            case 40:
+                if (direcao == 38) {
+                    return 0;
+                }
+                break;
+        }
+    }
+    for (var i = 1; i < (pontos - 1); i++) {
+        if ($("#cobra-corpo" + i).position().top == $("#cobra-cabeca").position().top &&
+            $("#cobra-corpo" + i).position().left == $("#cobra-cabeca").position().left) {
+            return 0;
+        }
+
+
+    }
+}
+
+
 $(document).keydown(function (e) {
-    if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
-        direcao = e.keyCode;
-        if (firstClick == true) {
-            maca();
-            $("#cobra-cabeca").attr("src", "imagens/cabeca_Cobrinha.png");
-            $("#cobra-rabo").css("display", "flex");
-            // apareceMaca = setInterval(maca, intervalo);
-            firstClick = false;
+    dimensao = clearInterval();
+    if (deadS == 1) {
+        if (direcao != 0) {
+            rota = direcao;
+        }
+        if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
+            direcao = e.keyCode;
+            
+            if (firstClick == true) {
+                maca();
+                $("#cobra-cabeca").attr("src", "imagens/cabeca_Cobrinha.png");
+                $("#cobra-rabo").css("display", "flex");
+                firstClick = false;
+            }
         }
     }
 })
 
-function dead(){
-    for(var i = 0; i<(cont-1); i++){ 
-        if(controleLeft[i] == controleLeft[cont] || controleTop[i] == controleTop[cont]){
-            return true;
-        }else{
-            return false;
-        }        
-    }
-    return false;
-}
-
-function move() {
-    var dimensao = setInterval(movimento, velocidade);
+function move(velocidade) {
+    dimensao = setInterval(movimento, velocidade);
     function movimento() {
-        if ((xLimite <= -1 || yLimite <= -1) || (xLimite >= 886 || yLimite >= 586) || dead()) {
+        if (dead() == 0 || ((xLimite <= -1 || yLimite <= -1) || (xLimite >= 886 || yLimite >= 586))) {
             dimensao = clearInterval();
+            deadS = 0;
             $("#restart").css("display", "flex");
             $("#pontos").css("display", "none");
             $("#pontos").html("0");
-            // apareceMaca = clearInterval();
             $(".maca").css("display", "none");
         } else {
-            cont++;
+            cont = cont + 1;
             controleLeft.push(xLimite);
             controleTop.push(yLimite);
             direcaoRabo.push(direcao);
