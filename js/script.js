@@ -93,7 +93,6 @@ function maca() {
 
 function buscaMaca() {
     if (xLimite == leftMaca && yLimite == topMaca) {
-        alert("");
         $(".maca").css("display", "none");
         controleLeft.push(xLimite);
         controleTop.push(yLimite);
