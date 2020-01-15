@@ -20,33 +20,33 @@ var rota = 0;
 var deadS = 1;
 var dimensao;
 
-function encontraLimite(){
+function encontraLimite() {
     yLimite = parseInt($("#game").height());
-    while( yLimite%15 != 0){
+    while (yLimite % 15 != 0) {
         yLimite--;
     }
     limiteY = yLimite - 14;
-    $("#game").css("height",yLimite+"px");
-    yLimite = yLimite/2;
-    while( yLimite%15 != 0){
+    $("#game").css("height", yLimite + "px");
+    yLimite = yLimite / 2;
+    while (yLimite % 15 != 0) {
         yLimite--;
     }
-    $(".posicao").css("top",yLimite+"px");
-    $(".maca").css("top",yLimite+"px");
+    $(".posicao").css("top", yLimite + "px");
+    $(".maca").css("top", yLimite + "px");
 
 
     xLimite = parseInt($("#game").width());
-    while( xLimite%15 != 0){
+    while (xLimite % 15 != 0) {
         xLimite--;
     }
     limiteX = xLimite - 14;
-    $("#game").css("width",xLimite+"px");
-    xLimite = parseInt(xLimite/2);
-    while( xLimite%15 != 0){
+    $("#game").css("width", xLimite + "px");
+    xLimite = parseInt(xLimite / 2);
+    while (xLimite % 15 != 0) {
         xLimite--;
     }
-    $(".posicao").css("left",xLimite+"px");
-    $(".maca").css("left",xLimite+"px");
+    $(".posicao").css("left", xLimite + "px");
+    $(".maca").css("left", xLimite + "px");
 }
 
 $(document).ready(function () {
@@ -75,15 +75,35 @@ $(document).ready(function () {
     move();
 })
 
-function maca() {
-    leftMaca = 1 + Math.floor(Math.random() * (limiteX+1));
-    topMaca = 1+ Math.floor(Math.random() * (limiteY+1));
-    
-    while (leftMaca%15 != 0) {
-        leftMaca = 1 + Math.floor(Math.random() * (limiteX+1));
+function verificaMaca() {
+    var aux = 0;
+    if (($("#cobra-cabeca").position().top != topMaca && $("#cobra-cabeca").position().left != leftMaca) &&
+        ($("#cobra-rabo").position().top != topMaca && $("#cobra-rabo").position().left != leftMaca)) {
+        for (var i = 1; i < (pontos - 1); i++) {
+            if ($("#cobra-corpo" + i).position().top == topMaca && $("#cobra-corpo" + i).position().left == leftMaca) {
+                aux = 1;
+            }
+        }
+        if (aux == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return true;
     }
-    while (topMaca%15 != 0) {
-        topMaca = 1 + Math.floor(Math.random() * (limiteY+1));
+}
+
+
+function maca() {
+    leftMaca = 1 + Math.floor(Math.random() * (limiteX + 1));
+    topMaca = 1 + Math.floor(Math.random() * (limiteY + 1));
+
+    while (leftMaca % 15 != 0 || verificaMaca() == true) {
+        leftMaca = 1 + Math.floor(Math.random() * (limiteX + 1));
+    }
+    while (topMaca % 15 != 0 || verificaMaca() == true) {
+        topMaca = 1 + Math.floor(Math.random() * (limiteY + 1));
     }
 
     $(".maca").css("display", "flex");
@@ -98,7 +118,7 @@ function buscaMaca() {
         controleTop.push(yLimite);
         direcaoRabo.push(direcao);
         pontos++;
-        $("#pontos").html(pontos+"");
+        $("#pontos").html(pontos + "");
         nome = "cobra-corpo" + pontos;
         $("<img/>", { id: nome, class: 'cobra', src: "imagens/corpo_Cobrinha.png" }).appendTo("section div");
         maca();
@@ -178,7 +198,7 @@ $(document).keydown(function (e) {
         }
         if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
             direcao = e.keyCode;
-            
+
             if (firstClick == true) {
                 maca();
                 $("#cobra-cabeca").attr("src", "imagens/cabeca_Cobrinha.png");
@@ -230,6 +250,6 @@ function move() {
             }
             buscaMaca();
             contolaMovimento();
-        }
+         }
     }
 }
